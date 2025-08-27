@@ -1,0 +1,82 @@
+# aula-de-programa-ao-andrid
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+
+    public void FazerSoma(View view) {
+       // Toast.makeText( this,"muito legal",Toast.LENGTH_LONG).show();
+
+        EditText txN1 = findViewById(R.id.txNumero1);
+        EditText txN2 = findViewById(R.id.txNumero2);
+
+        int soma = Integer.parseInt(txN1.getText().toString())+Integer.parseInt(txN2.getText().toString());
+
+        String resultado = String.format("%d",soma);
+
+        //Toast.makeText( this,resultado,Toast.LENGTH_LONG).show();
+
+        TextView tvResultado = findViewById(R.id.txResultado);
+        tvResultado.setText("Total da soma:"+resultado);
+
+    }
+
+    public void Fazersubtrair(View view) {
+
+        EditText txN1 = findViewById(R.id.txNumero1);
+        EditText txN2 = findViewById(R.id.txNumero2);
+
+        int subtrair = Integer.parseInt(txN1.getText().toString())-Integer.parseInt(txN2.getText().toString());
+
+        String resultado = String.format("%d",subtrair);
+
+        Toast.makeText( this,resultado,Toast.LENGTH_LONG).show();
+    }
+
+    public void Fazermultiplicação(View view) {
+
+        EditText txN1 = findViewById(R.id.txNumero1);
+        EditText txN2 = findViewById(R.id.txNumero2);
+
+        int Multiplicação = Integer.parseInt(txN1.getText().toString())*Integer.parseInt(txN2.getText().toString());
+
+        String resultado = String.format("%d", Multiplicação);
+
+        Toast.makeText( this,resultado,Toast.LENGTH_LONG).show();
+    }
+
+    public void Fazerdividir(View view) {
+
+        EditText txN1 = findViewById(R.id.txNumero1);
+        EditText txN2 = findViewById(R.id.txNumero2);
+
+        int Dividir = Integer.parseInt(txN1.getText().toString())/Integer.parseInt(txN2.getText().toString());
+
+        String resultado = String.format("%d", Dividir);
+
+        Toast.makeText( this,resultado,Toast.LENGTH_LONG).show();
+    }
+}
